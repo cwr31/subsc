@@ -1,0 +1,45 @@
+name: sub
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
+
+  schedule:
+    - cron: "*/10 * * * *"
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check out cwr31/sub
+        uses: actions/checkout@v3
+        with:
+          repository: cwr31/sub
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install requirements
+        run: |
+          pip3 install -r ./sub/requirements.txt
+      - name: Run sub
+        run: |
+          python3 ./sub/main.py
+        env:
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          SERVER_TOKEN: ${{secrets.SERVER_TOKEN}}
+      - name: Commit
+        run: |
+          git config --global user.email ariel@arielherself.xyz
+          git config --global user.name ariel
+          git add .
+          git commit -m "scheduled update"
+          git pull --rebase
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: gautamkrishnar/keepalive-workflow@master
