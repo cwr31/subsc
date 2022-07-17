@@ -24,10 +24,10 @@ jobs:
           token: ${{ secrets.my_pat }}
       - name: Install requirements
         run: |
-          pip3 install -r ./sub/requirements.txt
+          pip3 install -r ./requirements.txt
       - name: Run sub
         run: |
-          python3 ./sub/main.py
+          python3 ./main.py
         env:
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
           SERVER_TOKEN: ${{secrets.SERVER_TOKEN}}
