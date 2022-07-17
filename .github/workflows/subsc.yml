@@ -38,8 +38,14 @@ jobs:
           git add .
           git commit -m "scheduled update"
           git pull --rebase
-      - name: Push
-        uses: ad-m/github-push-action@master
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.my_pat }}
         with:
-          github_token: ${{ secrets.my_pat }}
+          source-directory: 'sub'
+          destination-github-username: 'cwr31'
+          destination-repository-name: 'sub'
+          user-email: god@gmail.com
+          target-branch: master
       - uses: gautamkrishnar/keepalive-workflow@master
