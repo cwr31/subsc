@@ -38,6 +38,7 @@ jobs:
           git add .
           git commit -m "scheduled update"
           git pull --rebase
+          git push
 #      - name: Pushes to cwr31/sub
 #        uses: cpina/github-action-push-to-another-repository@main
 #        env:
@@ -48,15 +49,15 @@ jobs:
 #          destination-repository-name: 'sub'
 #          user-email: god@gmail.com
 #          target-branch: master
-      - name: Pushes to cwr31/sub
-        uses: crykn/copy_folder_to_another_repo_action@v1.0.6
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.my_pat }}
-        with:
-          source_folder: 'sub'
-          destination_repo: 'cwr31/sub'
-          destination_folder: 'sub'
-          user_email: 'god@gmail.com'
-          user_name: 'god'
-          commit_msg: 'copy_folder_to_another_repo_action'
+#      - name: Pushes to cwr31/sub
+#        uses: crykn/copy_folder_to_another_repo_action@v1.0.6
+#        env:
+#          API_TOKEN_GITHUB: ${{ secrets.my_pat }}
+#        with:
+#          source_folder: 'sub'
+#          destination_repo: 'cwr31/sub'
+#          destination_folder: 'sub'
+#          user_email: 'god@gmail.com'
+#          user_name: 'god'
+#          commit_msg: 'copy_folder_to_another_repo_action'
       - uses: gautamkrishnar/keepalive-workflow@master
