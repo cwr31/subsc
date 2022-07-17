@@ -31,7 +31,7 @@ jobs:
         env:
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
           SERVER_TOKEN: ${{secrets.SERVER_TOKEN}}
-      - name: Commit
+      - name: Commit And Push
         run: |
           git config --global user.email ariel@arielherself.xyz
           git config --global user.name ariel
