@@ -38,7 +38,7 @@ jobs:
           git add .
           git commit -m "scheduled update"
           git pull --rebase
-      - name: Pushes to another repository
+      - name: Pushes to cwr31/sub
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.my_pat }}
